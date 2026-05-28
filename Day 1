@@ -1,0 +1,23 @@
+//Reverse 3 digit number without loop 
+
+import java.util.Scanner;
+
+class Solution {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a 3 digit number: ");
+        int n = scanner.nextInt();
+        int rev=0;
+        int d1=n%10;
+        rev=rev*10+d1;
+        n=n/10;
+        int d2=n%10;
+        rev=rev*10+d2;
+        n=n/10;
+        int d3=n%10;
+        rev=rev*10+d3;
+        
+        System.out.println("The reverse of the digits is: " + rev);
+        
+    }
+}

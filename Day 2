@@ -1,0 +1,172 @@
+// linear search 
+
+import java.util.*;
+
+class Solution {
+    public static void main(String[] args) {
+        Scanner input= new Scanner(System.in);
+        int [] arr = {1, 2, 3, 4, 5};
+        int n = arr.length;
+        System.out.println("Enter the number to search: ");
+        int target = input.nextInt();
+        linearSearch(arr, n, target);
+        
+    }
+public static void linearSearch(int [] arr, int n, int target){
+    for (int i=0;i<n;i++){
+        if (arr[i]==target){
+            System.out.println("Element found at index: "+i);
+            return;
+        }
+    }
+    System.out.println("Element not found");
+}
+}
+
+//binary search
+
+class Solution {
+    public static void main(String[] args) {
+        Scanner input= new Scanner(System.in);
+        int [] arr = {1, 2, 3, 4, 5,6,7};
+        int n = arr.length;
+        System.out.println("Enter the number to search: ");
+        int target = input.nextInt();
+        int result = binarySearch(arr, n, target);
+        if (result == -1)
+            System.out.println("Element not found");
+        else
+            System.out.println("Element found at index: " + result);
+    }
+public static int binarySearch(int [] arr, int n, int target){
+    int start=0,end=n-1;
+    while(start<=end){
+        int mid=(start+end)/2;
+        if (arr[mid]==target){
+            return mid;
+        }
+        else if(arr[mid]<target){
+            start=mid+1;}
+            else{
+                end=mid-1;
+            }
+        }
+        return -1;
+        }
+    }
+
+//bubble sort
+
+class Solution {
+    public static void main(String[] args) {
+        int [] arr = {22, 44,33,12,54,36,78,90,11,23};
+        int n = arr.length;
+        bubbleSort(arr, n);
+           System.out.println("Sorted array: " + Arrays.toString(arr));        
+    }
+public static void bubbleSort(int [] arr, int n){
+        for (int i=0;i<n-1;i++){
+            for (int j=0;j<n-1-i;j++){
+                if (arr[j]>arr[j+1]){
+                    int temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+            }
+        }
+
+        }
+    }
+//selection sort
+class Solution {
+    public static void main(String[] args) {
+        int [] arr = {22,44,33,12,54,36,78,90,11,23};
+        int n = arr.length;
+        selectionSort(arr, n);
+           System.out.println("Sorted array: " + Arrays.toString(arr));        
+    }
+public static void selectionSort(int [] arr, int n){
+        for (int i=0;i<n-1;i++){
+            int  min=i;
+            for (int j=i+1;j<n;j++){
+                if (arr[j]<arr[min]){
+                    min=j;
+                }
+            }
+                if (min!=i){
+                    int temp=arr[i];
+                    arr[i]=arr[min];
+                    arr[min]=temp;
+        }
+                }
+            }
+        }
+//insertion sort
+class Solution {
+    public static void main(String[] args) {
+        int [] arr = {22,44,33,12,54,36,78,90,11,23};
+        int n = arr.length;
+        int []sortedArr = insertionSort(arr, n);
+        System.out.println("Sorted array: " + Arrays.toString(sortedArr));
+    }
+public static int[] insertionSort(int [] arr, int n){
+        for (int i=1;i<n;i++){
+            int key = arr[i];
+            int j = i-1;
+            while (j>=0 && arr[j]>key){
+                arr[j+1] = arr[j];
+                j --;
+            }
+            arr[j+1] = key;
+        }
+        return arr;
+    }
+}
+
+//merge sort
+class Solution {
+    public static void main(String[] args) {
+        int [] arr = {22,44,33,12,54,36,78,90,11,23};
+        int n = arr.length;
+        int []sortedArr = mergedSort(arr, n);
+        System.out.println("Sorted array: " + Arrays.toString(sortedArr));
+    }
+    public static int[] mergedSort(int[]arr, int n){
+    
+        if (n <= 1||arr == null){
+            return arr;
+        }
+        int []temp = new int[n];
+        mergeSort(arr,0,n-1,temp);
+    return arr;
+    }
+    private static void mergeSort(int[]arr,int left,int right,int[]temp){
+        if (left<right){
+            int mid = left + (right-left)/2;
+            mergeSort(arr,left,mid,temp);
+            mergeSort(arr,mid+1,right,temp);
+            merge(arr,left,mid,right,temp);
+        }
+    }
+    private static void merge(int[]arr,int left,int mid,int right,int[]temp){
+        int i = left;
+        int j = mid+1;
+        int k = left;
+        while (i<=mid && j<=right){
+            if (arr[i]<=arr[j]){
+                temp[k++] = arr[i++];
+            }else{
+                temp[k++] = arr[j++];
+            }
+        }
+        while (i<=mid){
+            temp[k++] = arr[i++];
+        }
+        while (j<=right){
+            temp[k++] = arr[j++];
+        }
+        for (i=left;i<=right;i++){
+            arr[i] = temp[i];
+        }
+    }
+}

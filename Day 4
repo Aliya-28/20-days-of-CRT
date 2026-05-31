@@ -1,0 +1,319 @@
+//implementation of dtack using linked list
+class Node {
+    int data;
+    Node next;
+
+    public Node (int data){
+        this.data = data;
+        this.next = null;
+    }
+}
+public class Stack{
+   Node top;
+    public Stack(){
+         this.top = null;
+    }
+    void push (int data){
+        Node newNode = new Node(data);
+        if (top == null){
+            top = newNode;
+        } else {
+            newNode.next = top;
+            top = newNode;
+        }
+    }
+    void pop(){
+        if (top == null){
+            System.out.println("Stack is empty");
+        } else {
+            top = top.next;
+        }
+    }
+    void peek(){
+        if (top == null){
+            System.out.println("Stack is empty");
+        } else {
+            System.out.println("Top element is: " + top.data);
+        }
+    }
+    void display(){
+        if (top == null){
+            System.out.println("Stack is empty");
+        } else {
+            Node current = top;
+            while (current != null){
+                System.out.print(current.data + " ");
+                current = current.next;
+            }
+            System.out.println();
+        }
+    }
+
+
+public static void main(String[] args) {
+    Stack stack = new Stack();
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    stack.display(); 
+    stack.peek(); 
+    stack.pop();
+    stack.display(); 
+    stack.peek(); 
+}
+}
+
+//implementation of stack using array
+
+class Stack{
+    int[]arr;
+    int top;
+    int size;
+
+    public Stack (int size){
+        this.size=size;
+        arr=new int [size];
+        top=-1;
+    }
+
+    void push(int data){
+        if(top==size-1){
+            System.out.println("Stack is full");
+        }
+        else{
+            top++;
+            arr[top]=data;
+        }
+}
+ void pop(){
+        if(top==-1){
+            System.out.println("Stack is empty");
+        }
+        else{
+            top--;
+        }
+    }
+    void display(){
+        if(top==-1){
+            System.out.println("Stack is empty");
+        }
+        else{
+            for(int i=top;i>=0;i--){
+                System.out.print(arr[i]+" ");
+            }
+            System.out.println();
+        }
+    }
+    void peek(){
+        if(top==-1){
+            System.out.println("Stack is empty");
+        }
+        else{
+            System.out.println("Top element is: "+arr[top]);
+        }
+    }
+    void isEmpty(){
+        if(top==-1){
+            System.out.println("Stack is empty");
+        }
+        else{
+            System.out.println("Stack is not empty");
+        }
+    }
+    void isFull(){
+        if(top==size-1){
+            System.out.println("Stack is full");
+        }
+        else{
+            System.out.println("Stack is not full");
+        }
+    }
+
+    public static void main(String[] args) {
+        Stack stack=new Stack(5);
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        stack.push(40);
+        stack.push(50);
+        stack.display();
+        stack.peek();
+        stack.isEmpty();
+        stack.isFull();
+        stack.pop();
+        stack.display();
+    }
+
+}
+
+//implementation of queue using linkedlist
+
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+    public class Queue {
+        Node front, rear;
+
+    void enqueue(int data){
+        Node newNode= new Node(data);
+        if (rear==null){
+            front=rear=newNode;
+        }
+        else{
+            rear.next=newNode;
+            rear=newNode;
+        }
+}
+ void dequeue(){
+        if (front==null){
+            System.out.println("Queue is empty");
+        }
+        else{
+            System.out.println("Removed: " + front.data);
+            front=front.next;
+            if (front==null){
+                rear=null;
+            }
+        }
+    }
+    void display(){
+        if (front==null){
+            System.out.println("Queue is empty");
+        }
+        else{
+            Node temp=front;
+            while (temp!=null){
+                System.out.print(temp.data + " ");
+                temp=temp.next;
+            }
+            System.out.println();
+        }
+    }
+    void peek(){
+        if (front==null && rear==null){
+            System.out.println("Queue is empty");
+        }
+        else{
+            System.out.println("Front element: " + front.data);
+        }
+    }
+    
+
+    public static void main(String[] args) {
+        Queue queue=new Queue();
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        queue.enqueue(40);
+        queue.enqueue(50);
+        queue.display();
+        queue.peek();
+       
+        queue.dequeue();
+        queue.display();
+    }
+
+}
+
+
+//implementation of queue using array
+
+class Queue{
+    int[]arr;
+    int rear;
+    int front;
+    int size;
+
+    public Queue (int size){
+        this.size=size;
+        arr=new int [size];
+        front=-1;
+        rear=-1;
+    }
+
+    void enqueue(int data){
+        if(rear==size-1){
+            System.out.println("Queue is full");
+        }
+        else if (front==-1 && rear==-1)
+        {
+            front=0;
+            rear=0;
+            arr[rear]=data;
+        }
+        else{
+            rear++;
+            arr[rear]=data;
+        }
+}
+ void dequeue(){
+        if (front==-1 && rear==-1 ||front>rear){
+            System.out.println("Queue is empty");
+        }
+        else if (front==rear){
+            front=-1;
+            rear=-1;
+        }
+        else{
+            System.out.println("Removed: " + arr[front]);
+            front++;
+        }
+    }
+    void display(){
+        if (front==-1 && rear==-1){
+            System.out.println("Queue is empty");
+        }
+        else{
+            System.out.print("Queue elements: ");
+            for(int i=front;i<=rear;i++){
+                System.out.print(arr[i]+" ");
+            }
+            System.out.println();
+        }
+    }
+    void peek(){
+        if (front==-1 && rear==-1){
+            System.out.println("Queue is empty");
+        }
+        else{
+            System.out.println("Front element: " + arr[front]);
+        }
+    }
+    void isEmpty(){
+        if(front==-1 && rear==-1){
+            System.out.println("Queue is empty");
+        }
+        else{
+            System.out.println("Queue is not empty");
+        }
+    }
+    void isFull(){
+        if(rear==size-1){
+            System.out.println("Queue is full");
+        }
+        else{
+            System.out.println("Queue is not full");
+        }
+    }
+
+    public static void main(String[] args) {
+        Queue queue=new Queue(5);
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        queue.enqueue(40);
+        queue.enqueue(50);
+        queue.display();
+        queue.peek();
+        queue.isEmpty();
+        queue.isFull();
+        queue.dequeue();
+        queue.display();
+    }
+
+}

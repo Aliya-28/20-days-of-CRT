@@ -301,19 +301,36 @@ class Queue{
         }
     }
 
-    public static void main(String[] args) {
-        Queue queue=new Queue(5);
-        queue.enqueue(10);
-        queue.enqueue(20);
-        queue.enqueue(30);
-        queue.enqueue(40);
-        queue.enqueue(50);
-        queue.display();
-        queue.peek();
-        queue.isEmpty();
-        queue.isFull();
-        queue.dequeue();
-        queue.display();
+   public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        Queue queue=new Queue();
+        int choice;
+        do { 
+            System.out.print("1. Enqueue\n2. Dequeue\n3. Display\n4. Peek\n5. Exit\nEnter your choice: ");
+            choice=sc.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter data to enqueue: ");
+                    int data=sc.nextInt();
+                    queue.enqueue(data);
+                    break;
+                case 2:
+                    queue.dequeue();
+                    break;
+                case 3:
+                    queue.display();
+                    break;
+                case 4:
+                    queue.peek();
+                    break;
+                case 5:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+            }
+        } while (choice!=5);
+     
     }
 
 }

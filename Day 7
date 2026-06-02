@@ -1,0 +1,97 @@
+package com.example;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Map1 {
+
+   static HashMap<Integer, String> map = new HashMap<>();
+
+   public static void putElement() {
+      map.put(101, "Alice");
+      map.put(102, "Sara");
+      map.put(103, "Aman");
+      System.out.println("After put(): " + map);
+   }
+
+   public static void getElement() {
+      System.out.println("Value at key 102: " + map.get(102));
+   }
+
+   public static void containsKeyCheck() {
+      System.out.println("Contains key 101: " + map.containsKey(101));
+   }
+
+   public static void containsValueCheck() {
+      System.out.println("Contains value Sara: " + map.containsValue("Sara"));
+   }
+
+   public static void replaceElement() {
+      map.replace(102, "Fatima");
+      System.out.println("After replace(): " + map);
+   }
+
+   public static void removeElement() {
+      map.remove(103);
+      System.out.println("After remove(): " + map);
+   }
+
+   public static void sizeOfMap() {
+      System.out.println("Size of map: " + map.size());
+   }
+
+   public static void checkEmpty() {
+      System.out.println("Map is empty: " + map.isEmpty());
+   }
+
+   public static void displayKeys() {
+      System.out.println("Keys: " + map.keySet());
+   }
+
+   public static void displayValues() {
+      System.out.println("Values: " + map.values());
+   }
+
+   public static void displayEntries() {
+      System.out.println("Entries:");
+      for (Map.Entry<Integer, String> entry : map.entrySet()) {
+         System.out.println(entry.getKey() + " -> " + entry.getValue());
+      }
+   }
+
+
+   public static void putIfAbsentDemo() {
+      map.putIfAbsent(104, "Zoya");
+      map.putIfAbsent(101, "NewName");
+      System.out.println("After putIfAbsent(): " + map);
+   }
+
+   public static void getOrDefaultDemo() {
+      System.out.println("Key 105: "
+            + map.getOrDefault(105, "Not Found"));
+   }
+
+   
+   public static void clearMap() {
+      map.clear();
+      System.out.println("Map after clear(): " + map);
+   }
+
+   public static void main(String[] args) {
+
+      putElement();
+      getElement();
+      containsKeyCheck();
+      containsValueCheck();
+      replaceElement();
+      removeElement();
+      sizeOfMap();
+      checkEmpty();
+      displayKeys();
+      displayValues();
+      displayEntries();
+      putIfAbsentDemo();
+      getOrDefaultDemo();
+      clearMap();
+      checkEmpty();
+   }
+}

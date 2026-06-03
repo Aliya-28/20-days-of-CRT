@@ -1,0 +1,147 @@
+
+SQL>
+SQL> CREATE TABLE student (
+  2      id NUMBER,
+  3      name VARCHAR2(50)
+  4  );
+
+Table created.
+
+SQL>
+SQL> INSERT INTO student VALUES (1, 'Aliya');
+
+1 row created.
+
+SQL>
+SQL> SELECT * FROM student;
+
+        ID NAME
+---------- --------------------------------------------------
+         1 Aliya
+
+SQL> INSERT INTO student VALUES (2,'Elvin');
+
+1 row created.
+
+SQL> INSERT INTO student VALUES (3,'Sara');
+
+1 row created.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM student;
+
+        ID NAME
+---------- --------------------------------------------------
+         1 Aliya
+         2 Elvin
+         3 Sara
+
+SQL> UPDATE student SET name='Sana' WHERE id=2;
+
+1 row updated.
+
+SQL> COMMIT:
+  2  SELECT * FROM employee;
+SP2-0552: Bind variable "SELECT" not declared.
+SQL> SELECT * FROM employee;
+SELECT * FROM employee
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT * FROM student;
+
+        ID NAME
+---------- --------------------------------------------------
+         1 Aliya
+         2 Sana
+         3 Sara
+
+SQL> DELETE FROM student WHERE id=3;
+
+1 row deleted.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM student;
+
+        ID NAME
+---------- --------------------------------------------------
+         1 Aliya
+         2 Sana
+
+SQL> ALTER TABLE student ADD age NUMBER;
+
+Table altered.
+
+SQL> DESC student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER
+ NAME                                               VARCHAR2(50)
+ AGE                                                NUMBER
+
+SQL> UPDATE student SET age=20 WHERE id=1;
+
+1 row updated.
+
+SQL> UPDATE student SET age=21 WHERE id=2;
+
+1 row updated.
+
+SQL> SELECT * FROM student;
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+         1 Aliya                                                      20
+         2 Sana                                                       21
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM student;
+
+        ID NAME                                                      AGE
+---------- -------------------------------------------------- ----------
+         1 Aliya                                                      20
+         2 Sana                                                       21
+
+SQL> TRUNCATE TABLE student;
+
+Table truncated.
+
+SQL> SELECT * FROM student;
+
+no rows selected
+
+SQL> DESC student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER
+ NAME                                               VARCHAR2(50)
+ AGE                                                NUMBER
+
+SQL> DROP TABLE student;
+
+Table dropped.
+
+SQL> DESC student;
+ERROR:
+ORA-04043: object student does not exist
+
+
+SQL> SELECT * FROM student;
+SELECT * FROM student
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>

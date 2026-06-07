@@ -1,0 +1,102 @@
+SQL> CREATE TABLE employees( id INT PRIMARY KEY, name VARCHAR (20), salary NUMBER (20), ecity VARCHAR (20));
+
+Table created.
+
+SQL> INSERT INTO employees VALUES (101, 'Aliya', 50000, 'Nagpur');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO employees VALUES (102, 'Rahul', 45000, 'Pune');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO employees VALUES (103, 'Sneha', 50000, 'Nagpur');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO employees VALUES (104, 'Amit', 60000, 'Mumbai');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO employees VALUES (105, 'Priya', 45000, 'Pune');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO employees VALUES (106, 'Rohan', 70000, 'Delhi');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO employees VALUES (107, 'Neha', 55000, 'Mumbai');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO employees VALUES (108, 'Arjun', 60000, 'Nagpur');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO employees VALUES (109, 'Kavya', 55000, 'Hyderabad');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO employees VALUES (110, 'Vikram', 70000, 'Delhi');
+
+1 row created.
+
+SQL> SELECT * FROM Employees;
+
+        ID NAME                     SALARY ECITY
+---------- -------------------- ---------- --------------------
+       101 Aliya                     50000 Nagpur
+       102 Rahul                     45000 Pune
+       103 Sneha                     50000 Nagpur
+       104 Amit                      60000 Mumbai
+       105 Priya                     45000 Pune
+       106 Rohan                     70000 Delhi
+       107 Neha                      55000 Mumbai
+       108 Arjun                     60000 Nagpur
+       109 Kavya                     55000 Hyderabad
+       110 Vikram                    70000 Delhi
+
+10 rows selected.
+
+SQL> DESC Employees;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(20)
+ SALARY                                             NUMBER(20)
+ ECITY                                              VARCHAR2(20)
+
+SQL> SELECT 10+5 AS Result;
+SELECT 10+5 AS Result
+                    *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> SELECT 10+5 AS Result FROM dual;
+
+    RESULT
+----------
+        15
+
+SQL> SELECT BITAND(10,5) AS Result FROM dual;
+
+    RESULT
+----------
+         0
+
+SQL> SELECT BITAND(3,5) AS Result FROM dual;
+
+    RESULT
+----------
+         1

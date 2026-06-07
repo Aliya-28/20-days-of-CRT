@@ -1,0 +1,250 @@
+//Amount of food 
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int r=sc.nextInt();
+        int unit=sc.nextInt();
+        int n=sc.nextInt();
+        int []arr= new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        int result=amountoffood(r,unit,arr,n);
+        System.out.println(result);
+    }
+
+public static int amountoffood(int r, int unit, int []arr, int n){
+    int sum=0;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+        if (sum>=r*unit){
+            return i+1;
+            
+        }
+
+
+}
+if (sum<r*unit){
+    return -1;
+}
+return 0;
+}
+}
+
+//Insertion sort
+   public static void insertionSort1(int n, List<Integer> arr) {
+    
+        int temp=arr.get(n-1);
+        int j=n-2;
+        while(j>=0 && arr.get(j)>temp){
+            arr.set(j+1,arr.get(j));
+            for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+            j--;
+        }
+        arr.set(j+1,temp);
+    
+for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+//Insert node at tail of linked list
+ static SinglyLinkedListNode insertNodeAtTail(SinglyLinkedListNode head, int data) {
+        SinglyLinkedListNode newNode = new SinglyLinkedListNode (data);
+        if (head==null){
+            return newNode;
+        }
+        SinglyLinkedListNode temp=head;
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        temp.next=newNode;
+            return head;
+    }
+
+//Recursive Digit Sum
+    public static int superDigit(String n, int k) {
+    long sum = 0;
+    for (int i = 0; i < n.length(); i++) {
+            sum = sum + (n.charAt(i) - '0');
+        }
+        sum = sum * k;
+        while (sum >= 10) {
+            long temp = 0;
+            while (sum > 0) {
+                temp = temp + (sum % 10);
+                sum = sum / 10;
+            }
+            sum = temp;
+        }
+        return (int) sum;
+    }
+}
+
+//height of binary tree
+public static int height(Node root) {
+      	
+        if (root==null){
+            return -1;}
+            int leftheight=height(root.left);
+            int rightheight= height(root.right);
+            return Math.max(leftheight, rightheight)+ 1;
+            
+        }
+
+//preorder traversal
+public static void preOrder(Node root) {
+        if (root!=null){
+            System.out.print(root.data+ " ");
+            preOrder(root.left);
+            preOrder(root.right);
+        }
+    }
+
+//inorder traversal
+
+    public static void inOrder(Node root) {
+        if (root!=null){
+            inOrder (root.left);
+            System.out.print(root.data+" ");
+            inOrder (root.right);
+        }
+    }
+
+//postorder traversal
+public static void postOrder(Node root){
+if (root!=null){
+postOrder(root.left);
+postOrder(root.right);
+System.out.print(root.data+" ");
+}
+}
+
+//character counting abbcccc = ab2c5
+
+  public static void main(String[] args) {
+  
+    Scanner sc=new Scanner(System.in);
+    String str=sc.nextLine();
+    int count=1;
+    for (int i=1;i<str.length();i++){
+        if (str.charAt(i)==str.charAt(i-1)){
+            count++;
+        }
+        else {
+            System.out.print(str.charAt(i-1));
+            if (count>1){
+                System.out.print(count);
+            }
+            count=1;
+            
+        }
+        
+    }
+    System.out.print(str.charAt(str.length()-1));
+    if (count>1){
+        System.out.print(count);
+    }
+    }
+
+//next greatest eleement
+  public static void main(String[] args) {
+       
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        for (int i = 0; i < n; i++) {
+
+            int nextGreater = -1;
+
+            for (int j = i + 1; j < n; j++) {
+
+                if (arr[j] > arr[i]) {
+                    nextGreater = arr[j];
+                    break;
+                }
+            }
+
+            System.out.print(nextGreater + " ");
+        }
+    }
+
+//missing number
+    public static List<Integer> missingNumbers(List<Integer> arr, List<Integer> brr) {
+    // Write your code here
+          Map<Integer, Integer> map = new HashMap<>();
+        for (Integer num : brr) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        for (Integer num : arr) {
+            if (map.containsKey(num)) {
+                map.put(num, map.get(num) - 1);
+            }
+        }
+        List<Integer> missing = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > 0) {
+                missing.add(entry.getKey());
+            }
+        }
+        Collections.sort(missing);
+        return missing;
+    }
+
+}
+
+//leaders in an array
+
+    public static void main(String[] args) {
+      
+          Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] A = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            A[i] = sc.nextInt();
+        }
+
+        ArrayList<Integer> result = leader(A, n);
+
+        for (int x : result) {
+            System.out.print(x + " ");
+        }
+    }
+    
+
+    public static ArrayList<Integer> leader(int []A, int n){
+        ArrayList <Integer> value= new ArrayList<>();
+        for (int i=0;i<n;i++){
+            boolean isleader=true;
+            
+            for (int j=i+1;j<n;j++){
+                if (A[j]>A[i]){
+                    isleader=false;
+                    break;
+                }
+            }
+        
+        if (isleader){
+            value.add(A[i]);
+        }
+    }
+    return value;
+}
+}

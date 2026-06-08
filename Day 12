@@ -1,0 +1,209 @@
+
+SQL> SELECT * FROM Employees;
+
+        ID NAME                     SALARY ECITY
+---------- -------------------- ---------- --------------------
+       101 Aliya                      5000 Nagpur
+       102 Rahul                      4500 Pune
+       103 Sneha                      5000 Nagpur
+       104 Amit                       6000 Mumbai
+       105 Priya                      4500 Pune
+       106 Rohan                      7000 Delhi
+       107 Neha                       5500 Mumbai
+       108 Arjun                      6000 Nagpur
+       109 Kavya                      5500 Hyderabad
+       110 Vikram                     7000 Delhi
+       111 Envy                       6000 Hyderabad
+
+11 rows selected.
+
+SQL> SELECT count(name), ecity FROM Employees WHERE ecity IN ('Nagpur', 'Pune');
+SELECT count(name), ecity FROM Employees WHERE ecity IN ('Nagpur', 'Pune')
+                    *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> SELECT count(name) FROM Employees WHERE ecity IN ('Nagpur', 'Pune');
+
+COUNT(NAME)
+-----------
+          5
+
+SQL> SELECT * FROM Employees GROUP BY ecity;
+SELECT * FROM Employees GROUP BY ecity
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> SELECT name FROM Employees GROUP BY ecity;
+SELECT name FROM Employees GROUP BY ecity
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> SELECT name, count(id) FROM Employees GROUP BY ecity;
+SELECT name, count(id) FROM Employees GROUP BY ecity
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> SELECT name, ecity, count(id) FROM Employees GROUP BY ecity;
+SELECT name, ecity, count(id) FROM Employees GROUP BY ecity
+       *
+ERROR at line 1:
+ORA-00979: not a GROUP BY expression
+
+
+SQL> SELECT name, ecity, count(id) FROM Employees GROUP BY ecity, name;
+
+NAME                 ECITY                 COUNT(ID)
+-------------------- -------------------- ----------
+Aliya                Nagpur                        1
+Amit                 Mumbai                        1
+Priya                Pune                          1
+Rohan                Delhi                         1
+Kavya                Hyderabad                     1
+Sneha                Nagpur                        1
+Neha                 Mumbai                        1
+Rahul                Pune                          1
+Arjun                Nagpur                        1
+Envy                 Hyderabad                     1
+Vikram               Delhi                         1
+
+11 rows selected.
+
+SQL> SELECT name, ecity, count(id) FROM Employees GROUP BY ecity, name DESC;
+SELECT name, ecity, count(id) FROM Employees GROUP BY ecity, name DESC
+                                                                  *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SELECT name, ecity, count(id) FROM Employees GROUP BY ecity DESC;
+SELECT name, ecity, count(id) FROM Employees GROUP BY ecity DESC
+                                                            *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> SELECT name, ecity, count(id) FROM Employees ORDER BY ecity DESC;
+SELECT name, ecity, count(id) FROM Employees ORDER BY ecity DESC
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> SELECT ecity, count(id) FROM Employees ORDER BY ecity DESC;
+SELECT ecity, count(id) FROM Employees ORDER BY ecity DESC
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function
+
+
+SQL> SELECT * FROM Employees ORDER BY ecity DESC;
+
+        ID NAME                     SALARY ECITY
+---------- -------------------- ---------- --------------------
+       105 Priya                      4500 Pune
+       102 Rahul                      4500 Pune
+       103 Sneha                      5000 Nagpur
+       108 Arjun                      6000 Nagpur
+       101 Aliya                      5000 Nagpur
+       104 Amit                       6000 Mumbai
+       107 Neha                       5500 Mumbai
+       109 Kavya                      5500 Hyderabad
+       111 Envy                       6000 Hyderabad
+       110 Vikram                     7000 Delhi
+       106 Rohan                      7000 Delhi
+
+11 rows selected.
+
+SQL> SELECT * FROM Employees WHERE name LIKE '%a';
+
+        ID NAME                     SALARY ECITY
+---------- -------------------- ---------- --------------------
+       101 Aliya                      5000 Nagpur
+       103 Sneha                      5000 Nagpur
+       105 Priya                      4500 Pune
+       107 Neha                       5500 Mumbai
+       109 Kavya                      5500 Hyderabad
+
+SQL> SELECT * FROM Employees WHERE name LIKE '%a%';
+
+        ID NAME                     SALARY ECITY
+---------- -------------------- ---------- --------------------
+       101 Aliya                      5000 Nagpur
+       102 Rahul                      4500 Pune
+       103 Sneha                      5000 Nagpur
+       105 Priya                      4500 Pune
+       106 Rohan                      7000 Delhi
+       107 Neha                       5500 Mumbai
+       109 Kavya                      5500 Hyderabad
+       110 Vikram                     7000 Delhi
+
+8 rows selected.
+
+SQL> SELECT * FROM Employees WHERE name LIKE '%a%';
+
+        ID NAME                     SALARY ECITY
+---------- -------------------- ---------- --------------------
+       101 Aliya                      5000 Nagpur
+       102 Rahul                      4500 Pune
+       103 Sneha                      5000 Nagpur
+       105 Priya                      4500 Pune
+       106 Rohan                      7000 Delhi
+       107 Neha                       5500 Mumbai
+       109 Kavya                      5500 Hyderabad
+       110 Vikram                     7000 Delhi
+
+8 rows selected.
+
+SQL> SELECT name FROM Employees WHERE ecity in ('Nagpur','Pune');
+
+NAME
+--------------------
+Aliya
+Rahul
+Sneha
+Priya
+Arjun
+
+
+
+
+//superkey
+
+class Solution{
+    public static void main(String[]args){
+        Scanner sc=new Scanner(System.in);
+        String num=sc.nextLine();
+        ArrayList<Integer> list=new ArrayList<>();
+        for (char ch:num.toCharArray()){
+            list.add(ch-'0');
+        }
+    
+            
+            int result=securitykey(list);
+            System.out.println(result);
+        }
+        public static int securitykey (ArrayList<Integer> list){
+          boolean repeated=false;
+            int count=0;
+            for(int i=0;i<list.size();i++){
+                for(int j=i+1;j<list.size();j++){
+                    if(list.get(i).equals(list.get(j))){
+                          repeated=true;
+                        count++;
+                        break;
+                    }
+                }
+            }
+
+        return count;
+    
+}
+}

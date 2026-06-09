@@ -1,0 +1,354 @@
+SQL> CREATE TABLE P1(PId NUMBER (4) NOT NULL PRIMARY KEY, Name VARCHAR(20) NOT NULL, LNAME VARCHAR (20), Age NUMBER (3));
+
+Table created.
+
+SQL> CREATE TABLE P2(PId NUMBER (4) NOT NULL, Name VARCHAR(20) NOT NULL, LNAME VARCHAR (20), Age NUMBER (3)), CONSTRAINT PK_Person PRIMARY KEY (PId, LNAME));
+CREATE TABLE P2(PId NUMBER (4) NOT NULL, Name VARCHAR(20) NOT NULL, LNAME VARCHAR (20), Age NUMBER (3)), CONSTRAINT PK_Person PRIMARY KEY (PId, LNAME))
+                                                                                                       *
+ERROR at line 1:
+ORA-00922: missing or invalid option
+
+
+SQL> CREATE TABLE P2(PId NUMBER (4) NOT NULL, Name VARCHAR(20) NOT NULL, LNAME VARCHAR (20), Age NUMBER (3), CONSTRAINT PK_Person PRIMARY KEY (PId, LNAME));
+
+Table created.
+
+SQL> SELECT * FROM P2;
+
+no rows selected
+
+SQL> CREATE TABLE emp5 (
+  2      ENO    NUMBER(4)     PRIMARY KEY,
+  3      ENAME  VARCHAR2(10)
+  4  );
+
+Table created.
+
+SQL> CREATE TABLE department5 (
+  2      DNO    NUMBER(4),
+  3      DNAME  VARCHAR2(10),
+  4      ENO    NUMBER(4),
+  5      ECITY  VARCHAR2(9),
+  6      FOREIGN KEY (ENO) REFERENCES emp5(ENO)
+  7  );
+
+Table created.
+
+SQL> CREATE TABLE STUDENT (
+  2      StudentID INT,
+  3      Name VARCHAR(50),
+  4      Branch VARCHAR(20)
+  5  );
+
+Table created.
+
+SQL>
+SQL> INSERT INTO STUDENT VALUES
+  2  (1, 'Ashish', 'CSE'),
+  3  (2, 'Prashant', 'IT'),
+  4  (3, 'Help4Code', 'CSE'),
+  5  (4, 'Trisha', 'ECE');
+(1, 'Ashish', 'CSE'),
+                    *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> INSERT INTO STUDENT VALUES  ((1, 'Ashish', 'CSE'),
+  2  (2, 'Prashant', 'IT'),
+  3  (3, 'Help4Code', 'CSE'),
+  4  (4, 'Trisha', 'ECE'));
+INSERT INTO STUDENT VALUES  ((1, 'Ashish', 'CSE'),
+                               *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> INSERT INTO STUDENT VALUES(1, 'Ashish', 'CSE');
+
+1 row created.
+
+SQL> INSERT INTO STUDENT VALUES(2, 'Prashant', 'IT');
+
+1 row created.
+
+SQL> INSERT INTO STUDENT VALUES(3, 'Levin', 'ECE');
+
+1 row created.
+
+SQL> INSERT INTO STUDENT VALUES(4, 'Tiya', 'CSE');
+
+1 row created.
+
+SQL> UPDATE STUDENT SET NAME='ALIYA' WHERE STUDENTID=1;
+
+1 row updated.
+
+SQL> UPDATE STUDENT SET NAME='ARJUN' WHERE STUDENTID=2;
+
+1 row updated.
+
+SQL> CREATE TABLE MARKS (
+  2      StudentID INT,
+  3      Subject VARCHAR(30),
+  4      Marks INT
+  5  );
+
+Table created.
+
+SQL> INSERT INTO MARKS VALUES
+  2  (1, 'DBMS', 85),
+  3  (2, 'DBMS', 72),
+  4  (3, 'DBMS', 60),
+  5  SELECT * FROM Employees ORDER BY ecity DESC;
+(1, 'DBMS', 85),
+               *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> INSERT INTO MARKS VALUES (1,'DBS', 85);
+
+1 row created.
+
+SQL> INSERT INTO MARKS VALUES (2,'DBS', 72);
+
+1 row created.
+
+SQL> INSERT INTO MARKS VALUES (3,'DBS', 60);
+
+1 row created.
+
+SQL> INSERT INTO MARKS VALUES (3,'DBS', 60);
+
+1 row created.
+
+SQL> INSERT INTO MARKS VALUES (5,'DBS', 90);
+
+1 row created.
+
+SQL> SELECT * FROM MARKS;
+
+ STUDENTID SUBJECT                             MARKS
+---------- ------------------------------ ----------
+         1 DBS                                    85
+         2 DBS                                    72
+         3 DBS                                    60
+         3 DBS                                    60
+         5 DBS                                    90
+
+SQL> DROP MARKS WHERE STUDENTID=3;
+DROP MARKS WHERE STUDENTID=3
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> DELETE FROM MARKS WHERE STUDENTIS=3;
+DELETE FROM MARKS WHERE STUDENTIS=3
+                        *
+ERROR at line 1:
+ORA-00904: "STUDENTIS": invalid identifier
+
+
+SQL> DELETE FROM MARKS WHERE STUDENTID=3;
+
+2 rows deleted.
+
+SQL> INSERT INTO MARKS VALUES (3,'DBS', 60);
+
+1 row created.
+
+SQL> SELECT * FROM MARKS;
+
+ STUDENTID SUBJECT                             MARKS
+---------- ------------------------------ ----------
+         1 DBS                                    85
+         2 DBS                                    72
+         5 DBS                                    90
+         3 DBS                                    60
+
+SQL> SELECT * FROM MARKS ORDER BY STUDENTIS;
+SELECT * FROM MARKS ORDER BY STUDENTIS
+                             *
+ERROR at line 1:
+ORA-00904: "STUDENTIS": invalid identifier
+
+
+SQL> SELECT * FROM MARKS ORDER BY STUDENTID;
+
+ STUDENTID SUBJECT                             MARKS
+---------- ------------------------------ ----------
+         1 DBS                                    85
+         2 DBS                                    72
+         3 DBS                                    60
+         5 DBS                                    90
+
+SQL> SELECT * FROM STUDENTS;
+SELECT * FROM STUDENTS
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT * FROM STUDENT;
+
+ STUDENTID NAME
+---------- --------------------------------------------------
+BRANCH
+--------------------
+         1 ALIYA
+CSE
+
+         2 ARJUN
+IT
+
+         3 Levin
+ECE
+
+
+ STUDENTID NAME
+---------- --------------------------------------------------
+BRANCH
+--------------------
+         4 Tiya
+CSE
+
+
+SQL> SET COLUMN A15;
+SP2-0158: unknown SET option "COLUMN"
+SQL> SET LINESIZE 100
+SQL> SET PAGESIZE 50
+SQL>
+SQL> COLUMN STUDENTID FORMAT 999
+SQL> COLUMN NAME FORMAT A20
+SQL> COLUMN BRANCH FORMAT A10
+SQL>
+SQL> SELECT * FROM STUDENT;
+
+STUDENTID NAME                 BRANCH
+--------- -------------------- ----------
+        1 ALIYA                CSE
+        2 ARJUN                IT
+        3 Levin                ECE
+        4 Tiya                 CSE
+
+SQL> :
+SP2-0042: unknown command ":" - rest of line ignored.
+SQL>
+SQL>
+SQL> SELECT S.Name, M.Subject, M.Marks
+  2  FROM STUDENT S
+  3  INNER JOIN MARKS M ON S.StudentID = M.StudentID;
+
+NAME                 SUBJECT                             MARKS
+-------------------- ------------------------------ ----------
+ALIYA                DBS                                    85
+ARJUN                DBS                                    72
+Levin                DBS                                    60
+
+SQL> SELECT S.Name, S.Branch, M.Subject, M.Marks FROM STUDENT S INNER JOIN MARKS M ON S.STUDENTID=M.STUDENTID;
+
+NAME                 BRANCH     SUBJECT                             MARKS
+-------------------- ---------- ------------------------------ ----------
+ALIYA                CSE        DBS                                    85
+ARJUN                IT         DBS                                    72
+Levin                ECE        DBS                                    60
+
+SQL>
+SQL> SELECT S.Name, M.Subject, M.Marks
+  2  FROM STUDENT S
+  3  LEFT JOIN MARKS M ON S.StudentID = M.StudentID;
+
+NAME                 SUBJECT                             MARKS
+-------------------- ------------------------------ ----------
+ALIYA                DBS                                    85
+ARJUN                DBS                                    72
+Levin                DBS                                    60
+Tiya
+
+SQL> SELECT S.Name, M.Subject, M.Marks
+  2  FROM STUDENT S
+  3  RIGHT JOIN MARKS M ON S.StudentID = M.StudentID;
+
+NAME                 SUBJECT                             MARKS
+-------------------- ------------------------------ ----------
+ALIYA                DBS                                    85
+ARJUN                DBS                                    72
+Levin                DBS                                    60
+                     DBS                                    90
+
+SQL>
+SQL> SELECT S.Name, M.Subject, M.Marks
+  2  FROM STUDENT S
+  3  FULL OUTER JOIN MARKS M ON S.StudentID = M.StudentID;
+
+NAME                 SUBJECT                             MARKS
+-------------------- ------------------------------ ----------
+ALIYA                DBS                                    85
+ARJUN                DBS                                    72
+                     DBS                                    90
+Levin                DBS                                    60
+Tiya
+
+SQL> select * FROM MARKS;
+
+STUDENTID SUBJECT                             MARKS
+--------- ------------------------------ ----------
+        1 DBS                                    85
+        2 DBS                                    72
+        5 DBS                                    90
+        3 DBS                                    60
+
+SQL> select * FROM MARKS ORDER BY STUDENTID;
+
+STUDENTID SUBJECT                             MARKS
+--------- ------------------------------ ----------
+        1 DBS                                    85
+        2 DBS                                    72
+        3 DBS                                    60
+        5 DBS                                    90
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> select * FROM MARKS;
+
+STUDENTID SUBJECT                             MARKS
+--------- ------------------------------ ----------
+        1 DBS                                    85
+        2 DBS                                    72
+        5 DBS                                    90
+        3 DBS                                    60
+
+SQL>
+SQL> SELECT S.Name, M.Subject, M.Marks
+  2  FROM STUDENT S
+  3
+SQL> CREATE VIEW MARKS_VIEW AS
+  2  SELECT *
+  3  FROM MARKS
+  4  ORDER BY STUDENTID;
+
+View created.
+
+SQL> SELECT * FROM MARKS_VIEW;
+
+STUDENTID SUBJECT                             MARKS
+--------- ------------------------------ ----------
+        1 DBS                                    85
+        2 DBS                                    72
+        3 DBS                                    60
+        5 DBS                                    90
+
+SQL> SELECT S.Name, M.Subject, M.Marks
+  2  FROM STUDENT S
+  3  RIGHT JOIN MARKS_VIEW M ON S.StudentID = M.StudentID;
+
+NAME                 SUBJECT                             MARKS
+-------------------- ------------------------------ ----------
+ALIYA                DBS                                    85
+ARJUN                DBS                                    72
+Levin                DBS                                    60
+                     DBS                                    90

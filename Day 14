@@ -1,0 +1,165 @@
+ //solve me first
+static int solveMeFirst(int a, int b) {
+      	return a+b;
+
+   }
+
+//simplearraysum
+  public static int simpleArraySum(List<Integer> ar) {
+   
+    int sum=0;
+   
+    for (int i=0;i<ar.size();i++){
+        sum+=ar.get(i);
+    }
+    return sum;
+    }
+
+//complete the triplets
+ public static List<Integer> compareTriplets(List<Integer> a, List<Integer> b) {
+        int n=Math.max(a.size(),b.size()); int alice=0; int bob=0;
+        for (int i=0;i<n;i++){
+           
+                if (a.get(i)>b.get(i)){
+                   alice++;
+                } 
+                else if (a.get(i)<b.get(i)){
+                    bob++;
+                }
+             
+            
+        }
+
+   //verybigsum
+    public static long aVeryBigSum(List<Long> ar) {
+  
+    long sum=0;
+    for (int i=0;i<ar.size();i++){
+        sum+=ar.get(i);
+    }
+    return sum;
+    }
+
+   //diagonal difference
+      public static int diagonalDifference(List<List<Integer>> arr) {
+    // Write your code here
+    int sum1=0; int sum2=0;
+    for (int i=0;i<arr.size();i++){
+        sum1+=arr.get(i).get(i);
+        sum2+=arr.get(i).get(arr.size()-1-i);
+    }
+    return Math.abs(sum1-sum2);
+    }
+
+
+   //plusminus
+       public static void plusMinus(List<Integer> arr) {
+    // Write your code here
+    double pos=0;double neg=0;double zer=0;
+    for (int i=0;i<arr.size();i++){
+        
+        if (arr.get(i)>0){
+            pos++;
+         } 
+        if (arr.get(i)==0){
+            zer++;
+        }
+        
+        if (arr.get(i)<0){
+            neg++;
+        }
+        
+    }
+    double positive= pos/arr.size();
+    double zero=zer/arr.size();
+    double negative =neg/arr.size();
+    System.out.println(positive);
+    System.out.println(negative);
+    System.out.println(zero);
+    
+    }
+
+   //staircase
+       public static void staircase(int n) {
+    // Write your code here
+    for (int i=1;i<=n;i++){
+        for (int j=0;j<n-i;j++){
+            System.out.print(" ");
+        }
+        for (int k=0;k<i;k++){
+            System.out.print("#");
+        }
+    System.out.println();
+    }
+    
+    }
+
+   //minimaxsum
+   
+    public static void miniMaxSum(List<Integer> arr) {
+    // Write your code here
+
+ long sum = 0;
+        int min =Integer.MAX_VALUE;
+        int max = 0;
+
+        for (int num : arr) {
+            sum += num;
+            if (num < min) {
+                min = num;
+            }
+            if (num > max) {
+                max = num;
+            }
+        }
+
+        long minSum = sum - max;
+        long maxSum = sum - min;
+
+        System.out.println(minSum + " " + maxSum);
+    }
+
+   //birthdaycakecandles
+       public static int birthdayCakeCandles(List<Integer> candles) {
+    // Write your code here
+    int high=0;
+    int count=0;
+    int n=candles.size();
+    for (int i=0;i<n ;i++){
+        if (candles.get(i)>high){
+            high=candles.get(i);
+            count =1;
+        }
+        else if (candles.get(i)==high){
+        count++;
+        }
+    }
+    return count;
+    }
+
+   //time conversion
+     public static String timeConversion(String s) {
+    // Write your code here
+    String hourStr = s.substring(0, 2);
+    String timeModifier = s.substring(8, 10);
+    String remainingTime = s.substring(2, 8); 
+    
+    int hour = Integer.parseInt(hourStr);
+    
+  
+    if (timeModifier.equals("AM")) {
+        if (hour == 12) {
+            hourStr = "00";
+        }
+    } else { 
+        if (hour != 12) {
+            hour += 12;
+            hourStr = String.valueOf(hour);
+        }
+    }
+    
+
+    return hourStr + remainingTime;
+    }
+
+

@@ -1,0 +1,93 @@
+//profile photo in facebook
+import java.util.*;
+
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+       int W; int H;
+    Scanner sc=new Scanner(System.in);
+    int L=sc.nextInt();
+    int n=sc.nextInt();
+    for (int i=0;i<n;i++){
+        W=sc.nextInt();
+        H=sc.nextInt();
+        photo(L,n,W,H);
+    }
+    
+    }
+    public static void photo(int L,int n,int W,int H){
+        if (W<L||H<L){
+            System.out.println("UPLOAD ANOTHER");
+        }
+        else {
+            if (W==H){
+                System.out.println("ACCEPTED");
+            }
+            else{
+                System.out.println("CROP IT");
+            }
+        }
+    }
+}
+
+
+
+//toggle string
+import java.util.*;
+import java.util.Arrays;
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+       Scanner sc=new Scanner(System.in);
+       String s=sc.nextLine();
+       StringBuilder str=new StringBuilder();
+            
+       for (char ch:s.toString().toCharArray()){
+        if (Character.isUpperCase(ch)){
+            str.append(Character.toLowerCase(ch));
+        }
+        else {
+            str.append(Character.toUpperCase(ch));
+        }
+       }
+System.out.println(str.toString());
+    }
+}
+
+//find product
+import java.util.*;
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+     Scanner sc=new Scanner(System.in);
+     long product=1;
+     int n=sc.nextInt();
+     int []arr=new int[n];
+     for (int i=0;i<n;i++){
+        arr[i]=sc.nextInt();
+     }
+     long mod=1000000007;
+    for (int i=0;i<n;i++){
+        product = (product * (arr[i] % mod)) % mod;
+    }
+   System.out.print(product);
+    }
+}
+
+//palindrome
+class Solution {
+    public boolean isPalindrome(int x) {
+
+       
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+
+        int reversedHalf = 0;
+
+        // Reverse only half of the number
+        while (x > reversedHalf){
+            int digit = x % 10;
+            reversedHalf = reversedHalf * 10 + digit;
+            x = x / 10;
+        }
+        return (x == reversedHalf || x == reversedHalf / 10);
+    }
+}

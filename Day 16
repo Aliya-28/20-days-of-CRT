@@ -1,0 +1,125 @@
+import java.util.*;
+class Solution {
+    public static void main (String[]args){
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        traverseString(s);
+        countFrequency(s);
+        reverseString(s);
+        checkPalindrome(s);
+        toggleCase(s);
+        removeDuplicates(s);
+        slidingWindow(s);
+        patternMatching(s);
+            
+        System.out.print("s1: ");
+        String s1=sc.nextLine();
+        System.out.print(" s2: ");
+        String s2=sc.nextLine();
+        checkAnagram(s1,s2);
+       
+
+    }
+    public static void traverseString(String s) {
+        for (int i=0;i<s.length();i++){
+            System.out.println(s.charAt(i));//traverse the string using for loop and charAt() method
+        }
+        for (char c : s.toCharArray()){ //convert string to an array of character and then traverse it using for each loop
+            System.out.println(c);
+        } 
+    }
+    public static void countFrequency(String s){
+        Map <Character, Integer> freq=new HashMap<>();
+        for (char ch:s.toCharArray()){
+            freq.put(ch,freq.getOrDefault(ch,0)+1); //count the frequency of each character in the string using a hash map
+        }
+        for (Map.Entry<Character, Integer> entry: freq.entrySet()){
+            System.out.println(entry.getKey()+":"+entry.getValue());
+        }
+
+    }
+    public static void reverseString(String s){
+        StringBuilder sb=new StringBuilder(s);
+        System.out.println(sb.reverse().toString()); //reverse the string using StringBuilder class and its reverse() method    
+    }
+    public static void checkPalindrome(String s){
+        StringBuilder sb=new StringBuilder(s);
+        String reversed=sb.reverse().toString();
+        if (s.equals(reversed)){
+            System.out.println("The string " + s+ " is a palindrome.");
+        } else {
+            System.out.println("The string " + s+ " is not a palindrome.");  
+        }
+    }
+    public static void toggleCase(String s){
+        StringBuilder sb=new StringBuilder();
+        for (char ch:s.toCharArray()){
+            if (Character.isUpperCase(ch)){
+                sb.append(Character.toLowerCase(ch)); //toggle the case of each character in the string using Character class methods
+            } else if (Character.isLowerCase(ch)){
+                sb.append(Character.toUpperCase(ch));
+            } else {
+                sb.append(ch); //if the character is not a letter, keep it unchanged
+            }
+        }
+        System.out.println(sb.toString());
+        
+    }
+    // public static void removeDuplicates(String s){
+    //     Set<Character> seen=new HashSet<>();//use a hash set to keep track of seen characters and remove duplicates from the string
+    //     StringBuilder sb=new StringBuilder();
+    //     for (char ch:s.toCharArray()){
+    //         if (!seen.contains(ch)){
+    //             seen.add(ch); //remove duplicate characters from the string using a hash set to keep track of seen characters
+    //             sb.append(ch);
+    //         }
+    //     }
+    //     System.out.println(sb.toString());
+    // }
+    public static void removeDuplicates(String s){
+        s=s.replaceAll("\\s","").toLowerCase() ; //remove whitespace from the string using replaceAll() method
+        for (int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if (s.indexOf(ch)==i){ //remove duplicate characters from the string using indexOf() method to check if the character has been seen before
+                System.out.print(ch);//print the character if it is the first occurrence
+            }
+        }
+        System.out.println();
+
+    }
+    public static void checkAnagram(String s1, String s2){
+        s1=s1.replaceAll("\\s","").toLowerCase();
+        s2=s2.replaceAll("\\s","").toLowerCase();
+        if (s1.length()!=s2.length()){
+            System.out.println("The strings are not anagrams.");
+            return; 
+    }
+    
+        char[] arr1=s1.toCharArray();
+        char[] arr2=s2.toCharArray();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        if (Arrays.equals(arr1,arr2)){
+            System.out.println("The strings are anagrams.");
+        } else {
+            System.out.println("The strings are not anagrams.");
+        }
+    }
+    public static void slidingWindow(String s){
+        int n=s.length();
+        int k=3; //size of the window
+        for (int i=0;i<=n-k;i++){
+            String window=s.substring(i,i+k); //get the substring of size k starting from index i
+            System.out.println(window);
+        }
+    }
+    public static void patternMatching(String s){
+        String pattern="ali";
+        int index=s.indexOf(pattern); //find the index of the first occurrence of the pattern in the string using indexOf() method
+        if (index==-1){
+            System.out.println("The pattern " + pattern + " is not found in the string.");
+        } else {
+            System.out.println("The pattern " + pattern + " is found at index " + index + " in the string.");
+        }
+    }
+}
